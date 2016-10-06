@@ -58,7 +58,7 @@ public class NxtFactory extends AbstractRobotFactory {
                 Util1.getRobertaProperty("robot.plugin." + robotPropertyNumber + ".compiler.resources.dir"));
         this.robotId = robotId;
         this.nxtProperties = Util1.loadProperties("classpath:NXT.properties");
-        addBlockTypesFromProperties(this.nxtProperties);
+        addBlockTypesFromProperties("NXT.properties", this.nxtProperties);
     }
 
     @Override
