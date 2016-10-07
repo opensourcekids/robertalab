@@ -77,6 +77,7 @@ import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.syntax.stmt.AssignStmt;
 import de.fhg.iais.roberta.syntax.stmt.IfStmt;
 import de.fhg.iais.roberta.syntax.stmt.RepeatStmt;
@@ -109,6 +110,7 @@ public class BlockTypeContainer {
         add("SOUND_SENSING", Category.SENSOR, SoundSensor.class, BlocklyConstants.ROB_SENSOR_SOUND_GET_SAMPLE, BlocklyConstants.SIM_SOUND_GET_SAMPLE);
         add("TOUCH_SENSING", Category.SENSOR, TouchSensor.class, BlocklyConstants.ROB_SENSOR_TOUCH_IS_PRESSED, BlocklyConstants.SIM_TOUCH_IS_PRESSED);
         add("COMPASS_SENSING", Category.SENSOR, CompassSensor.class, BlocklyConstants.ROB_SENSOR_COMPASS_GET_SAMPLE);
+        add("VOLTAGE_SENSING", Category.SENSOR, VoltageSensor.class, BlocklyConstants.ROB_SENSOR_VOLTAGE_GET_SAMPLE);
         add(
             "ULTRASONIC_SENSING",
             Category.SENSOR,
