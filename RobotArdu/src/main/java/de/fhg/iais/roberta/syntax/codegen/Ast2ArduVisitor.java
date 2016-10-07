@@ -984,7 +984,11 @@ public class Ast2ArduVisitor implements AstVisitor<Void> {
     @Override
     public Void visitUltrasonicSensor(UltrasonicSensor<Void> ultrasonicSensor) {
         String port = ultrasonicSensor.getPort().getPortNumber();
-        this.sb.append("rob.ultrasonicDistance(" + port + ")");
+        if ( ultrasonicSensor.getPort().getPortNumber().equals("3") ) {
+            this.sb.append("rob.sonar()");
+        } else {
+            this.sb.append("rob.ultrasonicDistance(" + port + ")");
+        }
         return null;
     }
 
@@ -1628,15 +1632,6 @@ public class Ast2ArduVisitor implements AstVisitor<Void> {
                 case ULTRASONIC:
                     nlIndent();
                     this.sb.append("brm.setSonarStatus(ENABLE);");
-                    break;
-                //TODO: add a function for sonar
-                case ULTRASONIC_HEAD:
-                    nlIndent();
-                    this.sb.append("one.spiConnect(SSPIN);");
-                    //sonar setup:
-                    this.sb.append("pinMode(trigPin, OUTPUT);");
-                    this.sb.append("pinMode(echoPin, INPUT);");
-                    this.sb.append("pinMode(LEDPin,  OUTPUT);");
                     break;
                 case INFRARED:
                     nlIndent();
