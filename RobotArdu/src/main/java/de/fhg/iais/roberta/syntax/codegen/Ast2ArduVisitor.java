@@ -338,6 +338,8 @@ public class Ast2ArduVisitor implements AstVisitor<Void> {
                 nlIndent();
                 this.sb.append(getBlocklyTypeCode(var.getTypeVar())).append("* ");
                 this.sb.append(var.getName() + " = " + var.getName() + "Raw");
+            } else if ( var.getValue().getKind().hasName("SENSOR_EXPR") ) {
+                this.sb.append("[3]");
             } else {
                 ListCreate<Void> list = (ListCreate<Void>) var.getValue();
                 this.sb.append("[" + list.getValue().get().size() + "]");
@@ -921,9 +923,9 @@ public class Ast2ArduVisitor implements AstVisitor<Void> {
                 this.sb.append(")");
                 break;
             case "ColorSensorMode.RGB":
-                this.sb.append("{rob.colorSensorRGB(" + colors + port);
-                this.sb.append(")[0], rob.colorSensorRGB(" + colors + port);
-                this.sb.append(")[1], rob.colorSensorRGB(" + colors + port);
+                this.sb.append("{(double) rob.colorSensorRGB(" + colors + port);
+                this.sb.append(")[0], (double) rob.colorSensorRGB(" + colors + port);
+                this.sb.append(")[1], (double) rob.colorSensorRGB(" + colors + port);
                 this.sb.append(")[2]}");
                 break;
             case "ColorSensorMode.RED":
