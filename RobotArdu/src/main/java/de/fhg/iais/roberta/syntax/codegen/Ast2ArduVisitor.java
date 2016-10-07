@@ -330,15 +330,20 @@ public class Ast2ArduVisitor implements AstVisitor<Void> {
         this.sb.append(var.getName());
         if ( var.getTypeVar().isArray() ) {
             this.sb.append("Raw");
-            ListCreate<Void> list = (ListCreate<Void>) var.getValue();
             if ( var.getValue().toString().equals("ListCreate [NUMBER, ]")
                 || var.getValue().toString().equals("ListCreate [BOOLEAN, ]")
-                || var.getValue().toString().equals("ListCreate [STRING, ]") ) {
-                this.sb.append("[0]");
+                || var.getValue().toString().equals("ListCreate [STRING, ]")
+                || var.getValue().getKind().hasName("EMPTY_EXPR") ) {
+                this.sb.append("[0];");
+                nlIndent();
+                this.sb.append(getBlocklyTypeCode(var.getTypeVar())).append("* ");
+                this.sb.append(var.getName() + " = " + var.getName() + "Raw");
             } else {
+                ListCreate<Void> list = (ListCreate<Void>) var.getValue();
                 this.sb.append("[" + list.getValue().get().size() + "]");
             }
             if ( var.getValue().getKind().hasName("LIST_CREATE") ) {
+                ListCreate<Void> list = (ListCreate<Void>) var.getValue();
                 if ( list.getValue().get().size() == 0 ) {
                     return null;
                 }
