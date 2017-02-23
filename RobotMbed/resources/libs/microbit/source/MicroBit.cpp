@@ -102,9 +102,6 @@ MicroBit::MicroBit() :
     // Bring up soft reset functionality as soon as possible.
     resetButton.mode(PullUp);
     resetButton.fall(this, &MicroBit::reset);
-
-    // TODO (only rev 0.3) fixes USBRX pullup -> pullnone to counteract wrong resistor
-    pin_mode(USBRX, PullNone);
 }
 
 /**
